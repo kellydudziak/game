@@ -15,9 +15,10 @@ public class Main {
             @Override
             public void run() {
                 // Create and display window.
-                JFrame jFrame = new MainFrame("Game");
+                JFrame jFrame = new MainFrame("Squares");
                 jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 jFrame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                jFrame.setLocationRelativeTo(null); // center window on screen
                 //jFrame.pack(); // changes the size of frames according to size of components
                 jFrame.setVisible(true);
             }

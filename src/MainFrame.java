@@ -2,10 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class MainFrame extends JFrame {
-    static int xPosition = 0;
-    static int yPosition = 0;
+
+    static final int maxX = Main.WINDOW_WIDTH;
+    static final int maxY = Main.WINDOW_HEIGHT;
+    static final int numRows = 50;
+    static final int numCol = 50;
 
     public MainFrame(String title) {
         super(title);
@@ -27,56 +31,41 @@ public class MainFrame extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                doDrawing(getGraphics());
-               // printSquares(getGraphics());
+                printSquares(getGraphics());
             }
         });
 
 
     }
 
-    private void doDrawing(Graphics g) {
+    private void printSquares(Graphics g) {
+
+        int squareSize = maxX / numRows;
+        int padding = squareSize + 5;
+        int colorChange = 255 / numRows;
+        // TODO: handle larger values (colorChange is small when rgb is large)
+        Random random = new Random();
+        int red = random.nextInt(50);
+        int green = random.nextInt(50);
+        int blue = random.nextInt(50);
+        int xPosition = 0;
+        int yPosition = 0;
+
         Graphics2D g2d = (Graphics2D) g.create();
 
-        int red = 1;
-        int green = 50;
-        int blue = 50;
-
-        while (red < 255 && green < 255  && blue < 255) {
+        while (red < 255 && green < 255 && blue < 255) {
             g2d.setPaint(new Color(red, green, blue));
 
-            while (xPosition < 1000) {
-                g2d.fillRect(xPosition, yPosition, 10, 10);
-                xPosition += 15;
+            while (xPosition < maxX) {
+                g2d.fillRect(xPosition, yPosition, squareSize, squareSize);
+                xPosition += padding;
             }
             xPosition = 0;
-            yPosition += 15;
-            red += 10;
-            green += 10;
-            blue += 10;
+            yPosition += padding;
+            red += colorChange;
+            green += colorChange;
+            blue += colorChange;
         }
-    }
-
-    private void printSquares(Graphics g) {
-        Graphics2D graphics = (Graphics2D) g.create();
-
-
-        graphics.setPaint(Color.black);
-        while (xPosition < 1000) {
-            graphics.fillRect(xPosition, yPosition, 10, 10);
-            xPosition += 15;
-            xPosition += 15;
-        }
-//        while (red < 255 && green > 0 && blue < 255) {
-//            graphics.setPaint(new Color(red, green, blue));
-//            red++;
-//            blue++;
-//            green--;
-//            while (xPosition < Main.WINDOW_WIDTH) {
-//                graphics.fillRect(xPosition, yPosition, 10, 10);
-//                xPosition += 15;
-//            }
-//            yPosition += 15;
-//        }
     }
 }
+
