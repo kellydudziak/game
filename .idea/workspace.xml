@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f54da3c-2d21-4554-b33c-82a914a3b006" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/Game/MouseMotion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Game/Square.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MouseMotion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Square.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Game/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Game/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Game/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Game/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Game/MainFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Game/MainFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Game/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Game/MainFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainFrame.java" afterDir="false" />
     </list>

@@ -6,10 +6,11 @@ import java.util.Random;
 
 public class MainFrame extends JFrame {
 
-    static final int maxX = Main.WINDOW_WIDTH;
-    static final int maxY = Main.WINDOW_HEIGHT;
+    static final int maxPosition = Main.WINDOW_DIM;
     static final int numRows = 50;
-    static final int numCol = 50;
+    static Square[][] squares = new Square[maxPosition + 1][maxPosition + 1];
+    static int colorChange = 255 / numRows;
+
 
     public MainFrame(String title) {
         super(title);
@@ -31,7 +32,10 @@ public class MainFrame extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                printSquares(getGraphics());
+                // printSquares(getGraphics());
+                //drawSquares(getGraphics());
+                doSquares(getGraphics());
+                startMouseListener();
             }
         });
 
@@ -40,7 +44,7 @@ public class MainFrame extends JFrame {
 
     private void printSquares(Graphics g) {
 
-        int squareSize = maxX / numRows;
+        int squareSize = maxPosition / numRows;
         int padding = squareSize + 5;
         int colorChange = 255 / numRows;
         // TODO: handle larger values (colorChange is small when rgb is large)
@@ -56,7 +60,7 @@ public class MainFrame extends JFrame {
         while (red < 255 && green < 255 && blue < 255) {
             g2d.setPaint(new Color(red, green, blue));
 
-            while (xPosition < maxX) {
+            while (xPosition < maxPosition) {
                 g2d.fillRect(xPosition, yPosition, squareSize, squareSize);
                 xPosition += padding;
             }
@@ -67,5 +71,75 @@ public class MainFrame extends JFrame {
             blue += colorChange;
         }
     }
+
+    private void startMouseListener() {
+        MouseMotion mouseMotion = new MouseMotion();
+        addMouseMotionListener(mouseMotion);
+    }
+
+    private void drawSquares(Graphics graphics) {
+        //TODO: organize this
+        int xPosition = 0;
+        int yPosition = 0;
+        int squareSize = maxPosition / numRows;
+        int padding = squareSize + 5;
+
+        Color color = createColor();
+
+        while (yPosition < maxPosition) {
+            while (xPosition < maxPosition) {
+                squares[xPosition][yPosition] = new Square(xPosition, yPosition, squareSize, getGraphics(), color);
+                xPosition += padding;
+            }
+            xPosition = 0;
+            yPosition += padding;
+            color = changeColor(color, colorChange);
+        }
+    }
+
+    private Color createColor() {
+        Random random = new Random();
+        return new Color(random.nextInt(50), random.nextInt(50), random.nextInt(50));
+    }
+
+    protected static Color changeColor(Color c, int colorChange) {
+        int red = c.getRed() + colorChange;
+        int green = c.getGreen() + colorChange;
+        int blue = c.getBlue() + colorChange;
+
+        if (red < 255 && green < 255 && blue < 255) {
+            return new Color(c.getRed() + colorChange,
+                    c.getGreen() + colorChange,
+                    c.getBlue() + colorChange);
+        } else {
+            return Color.black;
+        }
+    }
+
+    private void doSquares(Graphics graphics) {
+        int xPosition = 0;
+        int yPosition = 0;
+        int squareSize = maxPosition / numRows;
+        int padding = squareSize + 5;
+        Graphics2D g2D = (Graphics2D) graphics;
+        Color color = createColor();
+
+        while (yPosition < maxPosition) {
+            while (xPosition < maxPosition) {
+                Rectangle rect = new Rectangle(xPosition, yPosition, squareSize, squareSize);
+                g2D.setPaint(color);
+                g2D.fill(rect);
+                xPosition += padding;
+
+                if (rect.contains(getMousePosition())) {
+                    System.out.println("/????");
+                }
+            }
+            xPosition = 0;
+            yPosition += padding;
+            color = changeColor(color, colorChange);
+        }
+    }
 }
+
 

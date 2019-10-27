@@ -1,8 +1,7 @@
 import javax.swing.*;
 
 public class Main {
-    static int WINDOW_WIDTH = 500;
-    static int WINDOW_HEIGHT = 500;
+    static int WINDOW_DIM = 500; // height and width must be equal
 
     public static void main(String[] args) {
         createGUI();
@@ -17,11 +16,14 @@ public class Main {
                 // Create and display window.
                 JFrame jFrame = new MainFrame("Squares");
                 jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                jFrame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                jFrame.setSize(WINDOW_DIM, WINDOW_DIM);
                 jFrame.setLocationRelativeTo(null); // center window on screen
                 //jFrame.pack(); // changes the size of frames according to size of components
                 jFrame.setVisible(true);
             }
         });
     }
+
+
+
 }
